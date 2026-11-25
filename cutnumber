@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Takumi Watanabe
 # SPDX-License-Identifier: BSD-3-Clause
 import sys
+from decimal import Decimal, ROUND_HALF_UP
 
 
 def main():
@@ -12,15 +13,22 @@ def main():
             continue
 
         try:
-            number = float(value)
-        except ValueError:
+            number = Decimal(value)
+            if not number.is_finite():
+                raise ValueError
+        except (ValueError, ArithmeticError):
             print(
                 f"cutnumber: invalid number on line {line_number}",
                 file=sys.stderr
             )
             return 1
 
-        print(number)
+        rounded = number.quantize(
+            Decimal("1E2"),
+            rounding=ROUND_HALF_UP
+        )
+
+        print(format(rounded, ".0f"))
 
 
 if __name__ == "__main__":
