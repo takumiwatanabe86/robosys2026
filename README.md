@@ -124,6 +124,14 @@ $ seq 1 5 | ./cutnumber -p 0
 - Python
   - テスト済みバージョン: 3.10〜3.14
 
+## インストール方法
+
+以下のコマンドでリポジトリを取得します。
+
+```bash
+$ git clone https://github.com/takumiwatanabe86/robosys2026.git
+$ cd robosys2026
+
 ## テスト環境
 - Ubuntu 24.04 LTS
 
