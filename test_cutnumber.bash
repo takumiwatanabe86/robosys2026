@@ -15,3 +15,7 @@ out=$(echo 1234 | ./cutnumber)
 
 [ "${res}" = 0 ] && echo OK
 exit "$res"
+
+# 10の位で丸めるテスト
+out=$(echo 1234 | ./cutnumber -p 1)
+[ "${out}" = "1230" ] || ng "$LINENO"
