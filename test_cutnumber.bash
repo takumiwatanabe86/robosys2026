@@ -31,3 +31,8 @@ out=$(echo 1234 | ./cutnumber -m ceil)
 # 切り捨てのテスト
 out=$(echo 1234 | ./cutnumber -m floor)
 [ "${out}" = "1200" ] || ng "$LINENO"
+
+# 数値以外を入力した場合のテスト
+out=$(echo hello | ./cutnumber 2>/dev/null)
+[ "$?" = 1 ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
