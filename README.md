@@ -131,6 +131,7 @@ $ seq 1 5 | ./cutnumber -p 0
 ```bash
 $ git clone https://github.com/takumiwatanabe86/robosys2026.git
 $ cd robosys2026
+```
 
 ## テスト環境
 - Ubuntu 24.04 LTS
