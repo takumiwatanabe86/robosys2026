@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Takumi Watanabe
+# SPDX-License-Identifier: BSD-3-Clause
+import sys
+
+
+def main():
+    for line in sys.stdin:
+        print(line, end="")
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
