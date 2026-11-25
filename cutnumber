@@ -3,11 +3,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import sys
 import argparse
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import (
+    Decimal,
+    ROUND_HALF_UP,
+    ROUND_CEILING,
+    ROUND_FLOOR,
+)
 
 
 def main():
-
     parser = argparse.ArgumentParser(
         description="Round numbers from standard input."
     )
@@ -17,7 +21,19 @@ def main():
         default=2,
         help="rounding place (default: 2)"
     )
+    parser.add_argument(
+        "-m", "--method",
+        choices=["half_up", "ceil", "floor"],
+        default="half_up",
+        help="rounding method (default: half_up)"
+    )
     args = parser.parse_args()
+
+    rounding_modes = {
+        "half_up": ROUND_HALF_UP,
+        "ceil": ROUND_CEILING,
+        "floor": ROUND_FLOOR,
+    }
 
     for line_number, line in enumerate(sys.stdin, start=1):
         value = line.strip()
@@ -39,11 +55,14 @@ def main():
         unit = Decimal(1).scaleb(args.place)
         rounded = (number / unit).quantize(
             Decimal("1"),
-            rounding=ROUND_HALF_UP
+             rounding=rounding_modes[args.method]
         ) * unit
 
-        print(format(rounded, "f").rstrip("0").rstrip(".")
-              if "." in format(rounded, "f") else format(rounded, "f"))
+        result = format(rounded, "f")
+        if "." in result:
+            result = result.rstrip("0").rstrip(".")
+
+        print(result)
 
     return 0
 
