@@ -2,10 +2,23 @@
 # SPDX-FileCopyrightText: 2026 Takumi Watanabe
 # SPDX-License-Identifier: BSD-3-Clause
 import sys
+import argparse
 from decimal import Decimal, ROUND_HALF_UP
 
 
 def main():
+
+    parser = argparse.ArgumentParser(
+        description="Round numbers from standard input."
+    )
+    parser.add_argument(
+        "-p", "--place",
+        type=int,
+        default=2,
+        help="rounding place (default: 2)"
+    )
+    args = parser.parse_args()
+
     for line_number, line in enumerate(sys.stdin, start=1):
         value = line.strip()
 
@@ -23,14 +36,16 @@ def main():
             )
             return 1
 
-        rounded = number.quantize(
-            Decimal("1E2"),
+        unit = Decimal(1).scaleb(args.place)
+        rounded = (number / unit).quantize(
+            Decimal("1"),
             rounding=ROUND_HALF_UP
-        )
+        ) * unit
 
-        print(format(rounded, ".0f"))
+        print(format(rounded, "f").rstrip("0").rstrip(".")
+              if "." in format(rounded, "f") else format(rounded, "f"))
 
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())
-
