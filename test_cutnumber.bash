@@ -36,3 +36,13 @@ out=$(echo 1234 | ./cutnumber -m floor)
 out=$(echo hello | ./cutnumber 2>/dev/null)
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "" ] || ng "$LINENO"
+
+# 複数行入力のテスト
+out=$(printf "1234\n5678\n" | ./cutnumber)
+expected=$(printf "1200\n5700")
+[ "${out}" = "${expected}" ] || ng "$LINENO"
+
+# 他のコマンドとのパイプ連携テスト
+out=$(seq 1 5 | ./cutnumber -p 0)
+expected=$(printf "1\n2\n3\n4\n5")
+[ "${out}" = "${expected}" ] || ng "$LINENO"
