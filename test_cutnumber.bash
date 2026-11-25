@@ -19,3 +19,15 @@ exit "$res"
 # 10の位で丸めるテスト
 out=$(echo 1234 | ./cutnumber -p 1)
 [ "${out}" = "1230" ] || ng "$LINENO"
+
+# 四捨五入のテスト
+out=$(echo 1250 | ./cutnumber -m half_up)
+[ "${out}" = "1300" ] || ng "$LINENO"
+
+# 切り上げのテスト
+out=$(echo 1234 | ./cutnumber -m ceil)
+[ "${out}" = "1300" ] || ng "$LINENO"
+
+# 切り捨てのテスト
+out=$(echo 1234 | ./cutnumber -m floor)
+[ "${out}" = "1200" ] || ng "$LINENO"
