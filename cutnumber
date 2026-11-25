@@ -5,8 +5,22 @@ import sys
 
 
 def main():
-    for line in sys.stdin:
-        print(line, end="")
+    for line_number, line in enumerate(sys.stdin, start=1):
+        value = line.strip()
+
+        if not value:
+            continue
+
+        try:
+            number = float(value)
+        except ValueError:
+            print(
+                f"cutnumber: invalid number on line {line_number}",
+                file=sys.stderr
+            )
+            return 1
+
+        print(number)
 
 
 if __name__ == "__main__":
