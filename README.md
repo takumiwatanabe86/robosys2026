@@ -1,5 +1,5 @@
 # robosys2026
-このリポジトリはロボットシステム学の授業で使用するリポジトリで[>
+このリポジトリはロボットシステム学の授業で使用するリポジトリです。
 
 ## plusコマンド
 ![test](https://github.com/takumiwatanabe86/robosys2026/actions/workflows/test.yml/badge.svg)
