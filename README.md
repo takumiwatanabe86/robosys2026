@@ -9,7 +9,7 @@
 使用例
 
 ```bash
-seq 5 | ./plus
+$ seq 5 | ./plus
 ```
 
 実行結果：
@@ -27,7 +27,7 @@ seq 5 | ./plus
 使用例
 
 ```bash
-echo 1234 | ./cutnumber
+$ echo 1234 | ./cutnumber
 ```
 
 実行結果：
@@ -57,7 +57,7 @@ echo 1234 | ./cutnumber
 使用例：
 
 ```bash
-echo 1234 | ./cutnumber -p 1
+$ echo 1234 | ./cutnumber -p 1
 ```
 
 実行結果：
@@ -77,7 +77,7 @@ echo 1234 | ./cutnumber -p 1
 使用例：
 
 ```bash
-echo 1234 | ./cutnumber -m ceil
+$ echo 1234 | ./cutnumber -m ceil
 ```
 
 実行結果：
@@ -87,7 +87,7 @@ echo 1234 | ./cutnumber -m ceil
 ```
 
 ```bash
-echo 1234 | ./cutnumber -m floor
+$ echo 1234 | ./cutnumber -m floor
 ```
 
 実行結果：
@@ -101,7 +101,7 @@ echo 1234 | ./cutnumber -m floor
 他のコマンドの出力をパイプで受け取り、複数の数値を処理できます。
 
 ```bash
-seq 1 5 | ./cutnumber -p 0
+$ seq 1 5 | ./cutnumber -p 0
 ```
 
 実行結果：
@@ -132,8 +132,8 @@ seq 1 5 | ./cutnumber -p 0
 plusコマンドとcutnumberコマンドのテストは、以下のコマンドで実行できます。
 
 ```bash
-bash test.bash
-bash test_cutnumber.bash
+$ bash test.bash
+$ bash test_cutnumber.bash
 ```
 
 ## 著作権とLICENSE
